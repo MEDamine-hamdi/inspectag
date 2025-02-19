@@ -1,0 +1,71 @@
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #262629;
+  width: calc(100% - 300px); /* Adjusted to take full width minus sidebar */
+  height: 80px; /* Ensure it starts from the left */
+  box-sizing: border-box; /* Added padding for spacing */
+  position: fixed; /* Keep it fixed at the top */
+  top: 0; /* Align it to the top */
+  left: 300px; /* Align it to the right of the sidebar */
+  transition: width 0.3s, left 0.3s; /* Smooth transition */
+  z-index: 999; /* Ensure it stays on top of other elements */
+}
+
+.logo {
+  font-size: 24px;
+}
+
+.userInfo {
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: 20px; /* Push to the right */
+  display: flex; /* Flex to align icon and text */
+  align-items: center;
+  color: white; /* Center vertically */
+}
+.profile {
+  margin-right: 12px; 
+  /* Adjust the value as needed for spacing */
+  /* You can also add any additional styling you want here */
+}
+
+/* Responsive adjustments for screens up to 768px */
+@media (max-width: 768px) {
+  .navbar {
+    width: 100%; /* Take up the full width on smaller screens */
+    left: 0; /* Reduce padding */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+  }
+
+  .logo {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .userInfo {
+    font-size: 16px;
+  }
+}
+
+/* Responsive adjustments for screens up to 480px */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 8px; /* Reduce padding further */
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .userInfo {
+    font-size: 14px;
+  }
+}

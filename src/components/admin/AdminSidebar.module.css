@@ -1,0 +1,110 @@
+/* AdminSidebar.module.css */
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  background: #262629;
+  color: #fff;
+  position: fixed; /* Keep it fixed on larger screens */
+  top: 0; /* Align it to the left */
+  transition: left 0.3s; /* Smooth transition */
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px; /* Align children vertically */
+}
+
+.sidebar.active {
+  left: 0; /* Show sidebar when active */
+}
+
+.toggleBtn {
+  display: none; /* Hide the toggle button on larger screens */
+  position: fixed;
+  top: 20px; /* Keep it at the same vertical position */
+  left: -60px; /* Move it to the left of the sidebar */
+  z-index: 1000; /* Ensure it stays on top */
+  
+  background: transparent; /* Transparent background */
+  color: #fff; /* White color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+
+.closeBtn {
+  background: transparent; /* Make the close button transparent */
+  border: none; /* No border */
+  color: #fff; /* White color for the icon */
+  cursor: pointer; /* Change cursor to pointer */
+  margin-bottom: 20px; /* Space below the button */
+  display: block; /* Make it block by default */
+}
+
+.logo {
+  display: flex;
+  align-items: center; /* Align image and text vertically */
+  border-bottom: 2px solid #ffffff;
+  margin-bottom: 50px;
+  width: 250px;margin-left: 20px; 
+}
+
+.ins {
+  width: auto; /* Adjust size as needed */
+  height: 50px;
+}
+
+.menu {
+  list-style: none;
+  padding-left: 100;
+}
+
+.link {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.link:hover {
+  background: #358FED;
+  border-radius: 5px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .sidebar {
+    left: -46vh;
+     /* Hide it off-screen on smaller screens */
+  }
+
+  .sidebar.active {
+    left: 0;
+    margin-top: 65px; /* Show sidebar when active */
+  }
+
+  .toggleBtn {
+    display: block;
+    font-size: 25px; /* Show the toggle button to open the sidebar on smaller screens */
+  }
+
+  .closeBtn {
+    display: block; 
+    font-size: 25px;/* Show the close button inside the sidebar on smaller screens */
+  }
+}
+
+/* Always show the sidebar on larger screens */
+@media (min-width: 769px) {
+  .toggleBtn {
+    display: none; /* Hide the toggle button on larger screens */
+  }
+
+  .closeBtn {
+    display: none; /* Hide the close button on larger screens */
+  }
+
+  .sidebar {
+    left: 0; /* Keep the sidebar visible on larger screens */
+  }
+}

@@ -1,0 +1,112 @@
+/* Login.module.css */
+/* Login.module.css */
+.loginPage {
+background-color: #0e1120;  /* Dark to lighter blue gradient */
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html, body, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  .loginContainer {
+    background-color: #2125354d;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .inputGroup {
+    margin-bottom: 15px;
+  }
+  
+  .inputGroup input {
+    background-color: #0e1120;
+    width: 70%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    align-items: center;
+    color: white;
+  }
+  
+  .button {
+    width: 50%;
+    padding: 10px;
+    background-color: #6077df;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: ui-monospace, monospace;
+  }
+  
+ .ins{
+    height: 70px;
+ }
+ .datadoit {
+    position: absolute; /* or use 'fixed' if you want it relative to the viewport */
+    bottom: 0;
+    right: 0;
+    height: 30px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+  .logo{/* Aligns children in a row (side by side) */
+    align-items: center; 
+  }
+  
+
+  @media (max-width: 768px) {
+    .loginContainer {
+      max-width: 90%;  /* Make the container smaller on mobile */
+    }
+  
+    .logo {
+      margin-left: 20px; /* Adjust left margin on smaller screens */
+    }
+  
+    .inputGroup input {
+      width: 70%; /* Ensure input fields take full width on smaller screens */
+    }
+  
+    button {
+      width: 50%; /* Button takes full width on smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .loginPage {
+      padding: 10px; /* Add padding on mobile */
+    }
+  
+    .logo {
+      flex-direction: column; /* Stack the logo vertically on smaller screens */
+      margin-left: 0; /* Remove left margin on smaller screens */
+      text-align: center; /* Center the logo text */
+    }
+  
+    .ins {
+      height: 50px; /* Adjust logo height for mobile */
+    }
+    .datadoit{
+        padding-bottom: 0cm;
+    }
+  }
+  
