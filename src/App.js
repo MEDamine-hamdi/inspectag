@@ -9,7 +9,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Login />} /> 
         <Route path="/admin-dashboard/*" element={<AdminDash />} />
-        
       </Routes>
     </Router>
   );

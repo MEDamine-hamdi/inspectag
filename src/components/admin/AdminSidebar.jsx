@@ -43,7 +43,7 @@ const AdminSidebar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/users" className={styles.link}>
+            <Link to="/admin-dashboard/showusers" className={styles.link}>
               <PiUsersThreeFill className={styles.iconUsers} /> Gérer utilisateurs
             </Link>
           </li>
