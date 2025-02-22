@@ -1,52 +1,63 @@
-// ShowUsers.js
 import React, { useState, useEffect } from 'react';
-import userService from '../../services/userService';  // Ensure correct path for your service file
-import styles from './ShowUsers.module.css';  // Ensure the CSS module is properly imported
+import userService from '../../services/userService';
+import styles from './ShowUsers.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const ShowUsers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // State to hold any error messages
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  const fetchUsers = async () => {
+    try {
+      const response = await userService.getAllUsers();
+      setUsers(response);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      setError('Erreur lors de la récupération des utilisateurs.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await userService.getAllUsers();  // API call to get all users
-        setUsers(response);  // Set the users directly if response is an array
-      } catch (error) {
-        console.error('Error fetching users:', error);
-        setError('Error fetching users. Please try again later.'); // Set error message
-      } finally {
-        setLoading(false); // Ensure loading is set to false regardless of the outcome
-      }
-    };
-
     fetchUsers();
   }, []);
 
-  if (loading) return <div>Loading users...</div>;
+  const handleDelete = async (userId) => {
+    try {
+      await userService.deleteUser(userId);
+      fetchUsers(); // Refresh the user list after deletion
+    } catch (error) {
+      console.error("Erreur lors de la suppression de l'utilisateur :", error);
+      setError("Échec de la suppression de l'utilisateur.");
+    }
+  };
 
-  if (error) return <div>{error}</div>; // Display error message if there is an error
+  const handleEdit = (userId) => {
+    navigate(`modify/${userId}`);
+  };
 
-  if (!Array.isArray(users) || users.length === 0) {
-    return <div>No users found.</div>; // Handle no users case
-  }
+  if (loading) return <div>Chargement des utilisateurs...</div>;
+  if (error) return <div className={styles.error}>{error}</div>;
+  if (!users.length) return <div>Aucun utilisateur trouvé.</div>;
 
   return (
     <div className={styles.container}>
       <h2>Tous les utilisateurs</h2>
       <div className={styles.userList}>
         {users.map((user) => (
-          <div key={user.id} className={styles.userItem}>
+          <div key={user._id} className={styles.userItem}>
             <div className={styles.userInfo}>
               <span className={styles.userName}>{user.nom}</span>
-              <span className={styles.userId}>{user.id}</span>
+              <span className={styles.userId}>{user._id}</span>
               <span className={styles.userEmail}>{user.email}</span>
               <span className={styles.userRole}>{user.role}</span>
             </div>
             <div className={styles.actions}>
-              <button className={styles.editButton}>modifier</button>
-              <button className={styles.deleteButton}>supprimer</button>
+              <button className={styles.editButton} onClick={() => handleEdit(user._id)}>modifier</button>
+              <button className={styles.deleteButton} onClick={() => handleDelete(user._id)}>supprimer</button>
             </div>
           </div>
         ))}

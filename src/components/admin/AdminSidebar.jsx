@@ -48,7 +48,7 @@ const AdminSidebar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/printers" className={styles.link}>
+            <Link to="/admin-dashboard/printers" className={styles.link}>
               <GrUserWorker /> Agents impressions
             </Link>
           </li>
