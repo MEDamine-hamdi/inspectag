@@ -33,7 +33,7 @@ const ModifyUser = () => {
     try {
       await userService.updateUser(userId, userData);
       console.log(`Utilisateur avec l'ID ${userId} mis à jour avec succès`);
-      navigate('/admin'); // Redirect back to the admin dashboard
+      navigate('/admin-dashboard/showusers'); // Redirect back to the admin dashboard
     } catch (error) {
       console.error('Erreur lors de la mise à jour de l’utilisateur :', error);
     }
@@ -62,8 +62,10 @@ const ModifyUser = () => {
           onChange={(e) => setUserData({ ...userData, role: e.target.value })}
           className={styles.input}
         >
-          <option value="admin">Admin</option>
-          <option value="agent">Agent</option>
+          <option value="">Poste</option>
+          <option value="Admin">Admin</option>
+          <option value="User">Agent qualité</option>
+          <option value="User">Agent d'impression</option>
         </select>
         <input
           type="password"

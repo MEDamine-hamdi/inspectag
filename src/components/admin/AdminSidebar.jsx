@@ -1,18 +1,26 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import { PiUsersThreeFill } from "react-icons/pi";
 import { GrUserWorker } from "react-icons/gr";
-import styles from "./AdminSidebar.module.css"; // Import CSS Module
-import ins from "../../assets/inspectag.png";
 import { GoSidebarCollapse } from "react-icons/go";
 import { TbLayoutSidebarRightExpand } from "react-icons/tb";
+import { IoLogOut } from "react-icons/io5";
+import styles from "./AdminSidebar.module.css"; // Import CSS Module
+import ins from "../../assets/inspectag.png";
+import { MdReportProblem } from "react-icons/md";
 
 const AdminSidebar = () => {
-  const [isActive, setIsActive] = useState(false); // State to manage sidebar visibility
+  const [isActive, setIsActive] = useState(false);
+  const navigate = useNavigate(); // Hook for navigation
 
   const toggleSidebar = () => {
-    setIsActive((prev) => !prev); // Toggle sidebar visibility
+    setIsActive((prev) => !prev);
+  };
+
+  const handleLogout = () => {
+    sessionStorage.clear(); // Clear session storage
+    navigate("/"); // Redirect to home page
   };
 
   return (
@@ -20,20 +28,20 @@ const AdminSidebar = () => {
       {/* First button to show the sidebar */}
       {!isActive && (
         <button className={styles.toggleBtn} onClick={toggleSidebar}>
-           <GoSidebarCollapse />{/* Show this icon to open sidebar */}
+          <GoSidebarCollapse />
         </button>
       )}
-      
+
       {/* Sidebar */}
       <div className={`${styles.sidebar} ${isActive ? styles.active : ""}`}>
         <div className={styles.logo}>
           <img src={ins} alt="inspectag logo" className={styles.ins} />
-          <h2>INSPECTAG</h2>
+          <h2 className={styles.h}>INSPECTAG</h2>
         </div>
-        
+
         {/* Second button to hide the sidebar */}
         <button className={styles.closeBtn} onClick={toggleSidebar}>
-        <TbLayoutSidebarRightExpand />{/* Show this icon to close sidebar */}
+          <TbLayoutSidebarRightExpand />
         </button>
 
         <ul className={styles.menu}>
@@ -49,10 +57,21 @@ const AdminSidebar = () => {
           </li>
           <li>
             <Link to="/admin-dashboard/printers" className={styles.link}>
-              <GrUserWorker /> Agents impressions
+              <GrUserWorker className={styles.icon} /> Agents impressions
             </Link>
           </li>
         </ul>
+
+        {/* Logout Button */}
+        <div className={styles.action}>
+          <button className={styles.logout} onClick={handleLogout}>
+            <IoLogOut className={styles.icon} /> Déconnexion
+          </button>
+          <Link to="https://aminehm.vercel.app/#contact" className={styles.logout}>
+              <MdReportProblem  className={styles.prob} /> Probléme ??
+            </Link>
+        </div>
+        
       </div>
     </div>
   );

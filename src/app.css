@@ -1,3 +1,8 @@
-* {
-    font-family: ui-monospace, monospace;
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@346&family=Lexend+Giga:wght@100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
+.funnelDisplay {
+  font-family: "Funnel Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 346;
+  font-style: normal;
 }

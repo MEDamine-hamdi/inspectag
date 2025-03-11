@@ -64,7 +64,8 @@ const AddUser = () => {
                     >
                         <option value="">Poste</option>
                         <option value="Admin">Admin</option>
-                        <option value="User">User</option>
+                        <option value="User">Agent qualité</option>
+                        <option value="User">Agent d'impression</option>
                     </select>
                 </div>
                 <div className={styles.inputGroup}>

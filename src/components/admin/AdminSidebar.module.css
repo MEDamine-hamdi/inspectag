@@ -1,17 +1,18 @@
-/* AdminSidebar.module.css */
+
 .sidebar {
   width: 300px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
   height: 100vh;
-  background: #262629;
-  color: #fff;
-  position: fixed; /* Keep it fixed on larger screens */
-  top: 0; /* Align it to the left */
-  transition: left 0.3s; /* Smooth transition */
-  display: flex;
-  flex-direction: column;
-  padding-top: 20px; /* Align children vertically */
+  background: #151A2D;
+  transition: all 0.4s ease;
 }
-
+.h{
+  color: #fff;
+  font-size:large;
+}
 .sidebar.active {
   left: 0; /* Show sidebar when active */
 }
@@ -45,6 +46,7 @@
   align-items: center; /* Align image and text vertically */
   border-bottom: 2px solid #ffffff;
   margin-bottom: 50px;
+  margin-top: 20px;
   width: 250px;margin-left: 20px; 
 }
 
@@ -53,37 +55,55 @@
   height: 50px;
 }
 
-.menu {
+.menu,.logout {
   list-style: none;
   padding-left: 100;
 }
 
-.link {
+.link,.logout {
   color: #fff;
+  display: flex;
+  gap: 12px;
+  white-space: nowrap;
+  border-radius: 8px;
+  padding: 11px 15px;
+  align-items: center;
   text-decoration: none;
-  display: block;
-  padding: 10px;
-  transition: 0.3s;
+  border: 1px solid #151A2D;
+  transition: 0.4s ease;
 }
 
-.link:hover {
-  background: #358FED;
-  border-radius: 5px;
+.link:hover,.logout:hover {
+  color: #151A2D;
+  background: #EEF2FF;
+}
+.logout{
+  color:#fff ;
+  background-color: transparent;
+  margin-left: 50px;
+  cursor:pointer;
 }
 
 /* Media Queries */
 @media (max-width: 768px) {
   .sidebar {
+    top: 0;
     left: -46vh;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    padding-top:74px ;
      /* Hide it off-screen on smaller screens */
   }
-
+  body {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
   .sidebar.active {
-    left: 0;
-    margin-top: 65px; /* Show sidebar when active */
+    left: 0; /* Show sidebar when active */
   }
 
   .toggleBtn {
+    color: #151A2D;
     display: block;
     font-size: 25px; /* Show the toggle button to open the sidebar on smaller screens */
   }
@@ -108,3 +128,26 @@
     left: 0; /* Keep the sidebar visible on larger screens */
   }
 }
+.action {
+  position: absolute;
+  bottom: 0;
+  padding: 10px;/* Optional: Add a background */
+}
+/* Responsive Logout Button */
+@media (max-width: 768px) {
+  .logout {
+    display: block; /* Ensure it's visible */
+    width: 100%; /* Make it full width */
+    text-align: center; /* Center the text */
+    margin-left: 0; /* Remove left margin */
+    font-size: 18px; /* Make the text bigger */
+  }
+
+  .action {
+    width: 100%; /* Ensure it spans full width */
+    text-align: center;
+    margin-bottom: 70px; /* Center align */
+    
+  }
+}
+
