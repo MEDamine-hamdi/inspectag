@@ -1,5 +1,5 @@
-.container {
-  max-width: 800px;
+.show {
+  max-width: 640px;
   margin:auto;
   background: #fff;
   padding: 20px;
@@ -40,6 +40,7 @@
 .actions {
   display: flex;
   gap: 10px;
+  flex-direction: column;
 }
 
 .editBtn, .deleteBtn {
@@ -82,3 +83,36 @@
   font-size: 16px;
   color: #555;
 }
+
+
+.searchTitle {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.searchInput {
+  min-width: 35%;
+  width: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.userList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.userCard {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+

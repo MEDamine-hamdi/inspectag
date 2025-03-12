@@ -6,9 +6,11 @@ import { useNavigate } from 'react-router-dom';
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-const MySwal = withReactContent(Swal); 
+const MySwal = withReactContent(Swal);
+
 const ShowUsers = () => {
   const [users, setUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -29,12 +31,12 @@ const ShowUsers = () => {
     fetchUsers();
   }, []);
 
-  const handleDelete = async (userId, users, setUsers, setError) => {
+  const handleDelete = async (userId) => {
     if (!userId) {
       console.error("Erreur : ID utilisateur est indéfini");
       return;
     }
-  
+
     const result = await MySwal.fire({
       title: "Êtes-vous sûr ?",
       text: "Cette action est irréversible !",
@@ -45,9 +47,9 @@ const ShowUsers = () => {
       confirmButtonText: "Oui, supprimer",
       cancelButtonText: "Annuler"
     });
-  
+
     if (!result.isConfirmed) return;
-  
+
     try {
       await axios.delete(`http://localhost:5000/api/users/${userId}`);
       setUsers(users.filter(user => user._id !== userId));
@@ -61,28 +63,43 @@ const ShowUsers = () => {
     navigate(`/admin-dashboard/showusers/modify/${userId}`);
   };
 
+  const filteredUsers = users.filter(user => 
+    user.nom.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   if (loading) return <div>Chargement des utilisateurs...</div>;
   if (error) return <div className={styles.error}>{error}</div>;
   if (!users.length) return <div className={styles.noUsers}>Aucun utilisateur trouvé.</div>;
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Liste des Utilisateurs</h2>
-      <div className={styles.userList}>
-        {users.map((user) => (
-          <div key={user._id} className={styles.userCard}>
-            <div className={styles.userInfo}>
-              <p><strong>Nom :</strong> {user.nom}</p>
-              <p><strong>Email :</strong> {user.email}</p>
-            </div>
-            <div className={styles.actions}>
-              <button className={styles.editBtn} onClick={() => handleEdit(user._id)}>Modifier</button>
-              <button onClick={() => handleDelete(user._id, users, setUsers, setError)} className={styles.deleteBtn}>
-  Supprimer
-</button>
-            </div>
+      <div className={styles.show}>
+        <h2 className={styles.title}>Liste des Utilisateurs</h2>
+        <div className={styles.userList}>
+          <div className={styles.search}>
+            <input
+              type="text"
+              placeholder="Filtrer par nom..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className={styles.searchInput}
+            />
           </div>
-        ))}
+          {filteredUsers.map((user) => (
+            <div key={user._id} className={styles.userCard}>
+              <div className={styles.userInfo}>
+                <p><strong>Nom :</strong> {user.nom}</p>
+                <p><strong>Email :</strong> {user.email}</p>
+                <p><strong>Poste:</strong> {user.role}</p>
+                <p><strong>ID :</strong> {user.id}</p>
+              </div>
+              <div className={styles.actions}>
+                <button className={styles.editBtn} onClick={() => handleEdit(user._id)}>Modifier</button>
+                <button onClick={() => handleDelete(user._id)} className={styles.deleteBtn}>Supprimer</button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

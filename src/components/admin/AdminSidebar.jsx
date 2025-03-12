@@ -31,7 +31,7 @@ const AdminSidebar = () => {
           <GoSidebarCollapse />
         </button>
       )}
-
+      {/* serach */}
       {/* Sidebar */}
       <div className={`${styles.sidebar} ${isActive ? styles.active : ""}`}>
         <div className={styles.logo}>
@@ -53,11 +53,6 @@ const AdminSidebar = () => {
           <li>
             <Link to="/admin-dashboard/showusers" className={styles.link}>
               <PiUsersThreeFill className={styles.iconUsers} /> Gérer utilisateurs
-            </Link>
-          </li>
-          <li>
-            <Link to="/admin-dashboard/printers" className={styles.link}>
-              <GrUserWorker className={styles.icon} /> Agents impressions
             </Link>
           </li>
         </ul>
