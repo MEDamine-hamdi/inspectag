@@ -36,7 +36,7 @@ const Login = ({ onLogin }) => {
       if (userData.role === "Admin") {
         navigate("/admin-dashboard/showusers");
       } else {
-        navigate("/user-dashboard");
+        navigate("/agent-dashboard/");
       }
     } catch (error) {
       toast.error(error.message);

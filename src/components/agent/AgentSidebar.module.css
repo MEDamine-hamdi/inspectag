@@ -1,0 +1,153 @@
+
+.sidebar {
+  width: 300px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: 100vh;
+  background: #151A2D;
+  transition: all 0.4s ease;
+}
+.h{
+  color: #fff;
+  font-size:large;
+}
+.sidebar.active {
+  left: 0; /* Show sidebar when active */
+}
+
+.toggleBtn {
+  display: none; /* Hide the toggle button on larger screens */
+  position: fixed;
+  top: 20px; /* Keep it at the same vertical position */
+  left: -60px; /* Move it to the left of the sidebar */
+  z-index: 1000; /* Ensure it stays on top */
+  
+  background: transparent; /* Transparent background */
+  color: #fff; /* White color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+
+.closeBtn {
+  background: transparent; /* Make the close button transparent */
+  border: none; /* No border */
+  color: #fff; /* White color for the icon */
+  cursor: pointer; /* Change cursor to pointer */
+  margin-bottom: 20px; /* Space below the button */
+  display: block; /* Make it block by default */
+}
+
+.logo {
+  display: flex;
+  align-items: center; /* Align image and text vertically */
+  border-bottom: 2px solid #ffffff;
+  margin-bottom: 50px;
+  margin-top: 20px;
+  width: 250px;margin-left: 20px; 
+}
+
+.ins {
+  width: auto; /* Adjust size as needed */
+  height: 50px;
+}
+
+.menu,.logout {
+  list-style: none;
+  padding-left: 100;
+}
+
+.link,.logout {
+  color: #fff;
+  display: flex;
+  gap: 12px;
+  white-space: nowrap;
+  border-radius: 8px;
+  padding: 11px 15px;
+  align-items: center;
+  text-decoration: none;
+  border: 1px solid #151A2D;
+  transition: 0.4s ease;
+}
+
+.link:hover,.logout:hover {
+  color: #151A2D;
+  background: #EEF2FF;
+}
+.logout{
+  color:#fff ;
+  background-color: transparent;
+  margin-left: 50px;
+  cursor:pointer;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .sidebar {
+    top: 0;
+    left: -46vh;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    padding-top:74px ;
+     /* Hide it off-screen on smaller screens */
+  }
+  body {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  .sidebar.active {
+    left: 0; /* Show sidebar when active */
+  }
+
+  .toggleBtn {
+    color: #151A2D;
+    display: block;
+    font-size: 25px; /* Show the toggle button to open the sidebar on smaller screens */
+  }
+
+  .closeBtn {
+    display: block; 
+    font-size: 25px;/* Show the close button inside the sidebar on smaller screens */
+  }
+}
+
+/* Always show the sidebar on larger screens */
+@media (min-width: 769px) {
+  .toggleBtn {
+    display: none; /* Hide the toggle button on larger screens */
+  }
+
+  .closeBtn {
+    display: none; /* Hide the close button on larger screens */
+  }
+
+  .sidebar {
+    left: 0; /* Keep the sidebar visible on larger screens */
+  }
+}
+.action {
+  position: absolute;
+  bottom: 0;
+  padding: 10px;/* Optional: Add a background */
+}
+/* Responsive Logout Button */
+@media (max-width: 768px) {
+  .logout {
+    display: block; /* Ensure it's visible */
+    width: 100%; /* Make it full width */
+    text-align: center; /* Center the text */
+    margin-left: 0; /* Remove left margin */
+    font-size: 18px; /* Make the text bigger */
+  }
+
+  .action {
+    width: 100%; /* Ensure it spans full width */
+    text-align: center;
+    margin-bottom: 70px; /* Center align */
+    
+  }
+}
+
